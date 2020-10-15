@@ -1,0 +1,985 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>유튜브 클론 - 자바 포함</title>
+        <meta charset="utf-8">
+        <link rel="stylesheet" href="../css/index.css">
+        <script src="../js/index.js"></script>
+    </head>
+    <body>
+        <div id="UpperBar">
+            <button id="SearchOffBtn" onclick="
+                SearchBarOff();
+            ">
+                <img src="../img/아이콘/왼화살표.png" alt="검색창 끄기 버튼">
+            </button>
+            <div id="Left">
+                <button id="Menu" onclick="
+                    TurnLeftMenu();
+                ">
+                    <img src="../img/아이콘/메뉴.png" alt="메뉴 버튼">
+                </button>
+                <a href="index.html" id="LogoBtn">
+                    <img src="../img/아이콘/유튜브프리미엄.png" alt="메인 로고 버튼">
+                </a>
+                <h1>KR</h1>
+            </div>
+            
+            <div id="Middle">
+                <div id="SearchBar">
+                    <input type="text" id="InputField" class="Modal"
+                    oninput="SearchExamOnOff(this);"
+                    onclick="SearchModalWindow(this);"
+                    >
+                    <h1 id="SearchExam">검색</h1>
+                    <button id="Keyboard">
+                        <img src="../img/아이콘/키보드아이콘.png" alt="화상키보드 버튼">
+                    </button>
+                </div>
+                <div id="SearchBtnWrap">
+                    <button id="SearchBtn">
+                        <img src="../img/아이콘/검색.png" alt="검색 버튼">
+                    </button>
+                </div>
+                <div id="SearchToggleBox">
+                    <h1 id="SearchToggle">검색</h1>
+                </div>
+                <div id="SearchModal" class="Modal">
+                    <div class="Autobox">
+                        <button class="AutoComplete" onclick="Redirect('index.html');">
+                            <h1>랄로 플레이리스트</h1>
+                        </button>
+                        <h2 class="AutoCompleteDel Modal" onclick="RemoveAuto(this);">삭제</h2>
+                    </div>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "조커");
+                    </script>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "조커 예고편");
+                    </script>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "감스트");
+                    </script>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "LCK");
+                    </script>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "피지컬갤러리");
+                    </script>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "가짜사나이");
+                    </script>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "가짜ㅏㅅ나이");
+                    </script>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "워크맨");
+                    </script>
+                    <script>
+                        var target = CreateAuto();
+                        SetAuto(target, "랄로");
+                    </script>
+                </div>
+            </div>
+                
+            <div id="Right">
+                <div class="UpperRightBtnWrap" id="Search" onclick="
+                    SearchBarOn();
+                ">
+                    <button class="UpperRightBtn Modal">
+                        <img class="Modal" src="../img/아이콘/검색.png" alt="검색 버튼" style="width: 16px;">
+                    </button>
+                </div>
+                <div class="UpperRightBtnWrap" id="Create" onclick="
+                    UpperRightWindow('#CreateWindow');
+                ">
+                    <button class="UpperRightBtn Modal">
+                        <img class="Modal" src="../img/아이콘/영상추가.png" alt="만들기 버튼">
+                    </button>
+                </div>
+                <div class="UpperRightBtnWrap" id="App" onclick="
+                    UpperRightWindow('#AppWindow');
+                ">
+                    <button class="UpperRightBtn Modal">
+                        <img class="Modal" src="../img/아이콘/정렬.png" alt="Youtube 앱 버튼">
+                    </button>
+                </div>
+                <div class="UpperRightBtnWrap" id="Notification" onclick="
+                    UpperRightWindow('#NotificationWindow');
+                ">
+                    <button class="UpperRightBtn Modal">
+                        <img class="Modal" src="../img/아이콘/알림.png" alt="알림 버튼">
+                    </button>
+                </div>
+                <button class="Modal" id="ProfileBtn" onclick="
+                UpperRightWindow('#ProfileWindow');
+                ">
+                    <div class="Modal" id="ProfileWrap">
+                        <img class="Modal" src="../img/파카썸네일.jpg" alt="프로필 버튼">
+                    </div>
+                </button>
+                <div id="UpperRightBtnToggles">
+                    <h1 id="SearchToggle">검색</h1>
+                    <h1 id="CreateToggle">만들기</h1>
+                    <h1 id="AppToggle">Youtube 앱</h1>
+                    <h1 id="NotificationToggle">알림</h1>
+                </div>
+                
+                
+                <div class="UpperRightWindow" id="CreateWindow">
+                    <a href="index.html" class="UpperRightWindowSlot">
+                        <div class="WidowSlotWrap">
+                            <img src="../img/아이콘/동영상업로드.png" alt="동영상 업로드 버튼">
+                            <h1>동영상 업로드</h1>
+                        </div>
+                    </a>
+                    <a href="index.html" class="UpperRightWindowSlot">
+                        <div class="WidowSlotWrap">
+                            <img src="../img/아이콘/실시간스트리밍시작.png" alt="실시간 스트리밍 시작 버튼">
+                            <h1>실시간 스트리밍 시작</h1>
+                        </div>
+                    </a>
+                </div>
+
+                <div class="UpperRightWindow" id="AppWindow">
+                    <div class="AppSlotContainer">
+                        <a href="index.html" class="UpperRightWindowSlot">
+                            <div class="WidowSlotWrap">
+                                <img src="../img/아이콘/유튜브tv.png" alt="유튜브 TV 버튼">
+                                <h1>YouTube TV</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="AppSlotContainer" id="AppSlotMiddle">
+                        <a href="index.html" class="UpperRightWindowSlot">
+                            <div class="WidowSlotWrap">
+                                <img src="../img/아이콘/유튜브뮤직.png" alt="유튜브 뮤직 버튼">
+                                <h1>YouTube Music</h1>
+                            </div>
+                        </a>
+                        <a href="index.html" class="UpperRightWindowSlot">
+                            <div class="WidowSlotWrap">
+                                <img src="../img/아이콘/유튜브키즈.png" alt="유튜브 키즈 버튼">
+                                <h1>YouTube Kids</h1>
+                            </div>
+                        </a>
+                    </div>
+                    <div class="AppSlotContainer">
+                        <a href="index.html" class="UpperRightWindowSlot">
+                            <div class="WidowSlotWrap">
+                                <img src="../img/아이콘/유튜브색로고.png" alt="크리에이티브 아카데미 버튼">
+                                <h1>크리에이터 아카데미</h1>
+                            </div>
+                        </a>
+                        <a href="index.html" class="UpperRightWindowSlot">
+                            <div class="WidowSlotWrap">
+                                <img src="../img/아이콘/유튜브색로고.png" alt="아티스트를 위한 유튜브 버튼">
+                                <h1>YouTube for Artists</h1>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="UpperRightWindow Modal" id="NotificationWindow">
+                    <div id="NotiTop">
+                        <h1 class="Modal">알림</h1>
+                        <a href="index.html">
+                            <img src="../img/아이콘/설정.png" alt="알림 설정 버튼">
+                        </a>
+                    </div>
+                    <div id="NotiContainer">
+                        <div class="NotiBoxWrap">
+                            <div class="NotiBox">
+                                <a href="index.html" class="NotiBoxInside">
+                                    <div class="NotiBoxChannelThumWrap">
+                                        <img src="../img/우왁굳썸네일.jpg" alt="알림 채널 썸네일">
+                                    </div>
+                                    <h1>게임 설정만 4시간동안 하는 스트리머 - 유로트럭</h1>
+                                    <img class="NotiBoxThum" src="../img/우왁굳영상.PNG" alt="알림 영상 썸네일">
+                                    <h2>12분 전</h2>
+                                </a>
+                                <button class="Modal" onclick="
+                                    ClickNotiModal(this);
+                                ">
+                                    <img class="Modal" src="../img/아이콘/더보기.png" alt="알림 더보기 버튼">
+                                </button>
+                            </div>
+                            <div class="UpperRightWindow NotiModal">
+                                <button class="UpperRightWindowSlot NotiModalUp" onclick="
+                                    RemoveNoti(this.parentNode.parentNode);
+                                ">
+                                    <div class="WidowSlotWrap Modal">
+                                        <img src="../img/아이콘/숨기기.png" alt="동영상 업로드 버튼">
+                                        <h1>이 알림 숨기기</h1>
+                                    </div>
+                                </button>
+                                <button href="index.html" class="UpperRightWindowSlot">
+                                    <div class="WidowSlotWrap">
+                                        <img style="opacity: 0;" src="../img/아이콘/실시간스트리밍시작.png" alt="동영상 업로드 버튼">
+                                        <h1>우왁굳의 게임방송의 모든 알림 끄기</h1>
+                                    </div>
+                                </button>
+                            </div>
+                        </div>
+                        <script>
+                        var target = CreateNotification();
+                        SetNoti(target,"../img/감스트썸네일.jpg","감스트 한국최초 피파21 손흥민 뜨는영상 초레전드!! 0.2% 뚫었다!! OMG PACKED SON FIFA21 Ultimate Team","../img/감스트영상.webp","58분 전");
+                        </script>
+                        
+                        <script>
+                            var target = CreateNotification();
+                            SetNoti(target,"../img/꽈뚜룹썸네일.jpg","팔뚝만한 토마호크 고기 먹방","../img/꽈뚜룹영상.webp","1시간 전");
+                        </script>
+                            
+                        <script>
+                            var target = CreateNotification();
+                            SetNoti(target,"../img/도파썸네일.jpg","【천룡인서버에서 만난 의문의 한국인 킨드레드 장인과 듀오결성 】","../img/도파영상.webp","3시간 전");
+                        </script>
+
+                        <script>
+                            var target = CreateNotification();
+                            SetNoti(target,"../img/랄로썸네일.jpg","사랑한다 곽철우!","../img/랄로영상.webp","4시간 전");
+                        </script>
+
+                        <script>
+                            var target = CreateNotification();
+                            SetNoti(target,"../img/승빠썸네일.jpg","사람 볶는 방법","../img/승빠영상.webp","4시간 전");
+                        </script>
+
+                        <script>
+                            var target = CreateNotification();
+                            SetNoti(target,"../img/튜나썸네일.jpg","강스포]아이들의 꿈을 값싸게 처분한 UCC 뮬란 리뷰 [튜나]","../img/튜나영상.webp","12시간 전");
+                        </script>
+
+                        <script>
+                            var target = CreateNotification();
+                            SetNoti(target,"../img/워크맨썸네일.jpg","🐝꿀잼주의🐝 진짜 벌떼에 SM 춤짱 신동도 얼어버린 🍯 빨려다 골로 가는 극한 직업! 양봉장 알바 리뷰 | 워크맨 ep.71","../img/워크맨영상.webp","1일 전");
+                        </script>
+
+                        <script>
+                            var target = CreateNotification();
+                            SetNoti(target,"../img/모르는애썸네일.jpg","재키와이가 대단한 이유 랩을 들어보면 알지!","../img/재키와이영상.webp","2일 전");
+                        </script>
+
+                        <script>
+                            var target = CreateNotification();
+                            SetNoti(target,"../img/피갤썸네일.jpg","본격적인 선발과정 시작, 퇴교자 속출 l 가짜사나이2 Ep3","../img/피갤영상.webp","5일 전");
+                        </script>
+                    </div>
+                </div>
+
+                <div class="UpperRightWindow Modal" id="ProfileWindow">
+                    <div class="Modal" id="ProfileTop">
+                        <div class="Modal" id="ProfileTopThumWrap">
+                            <img class="Modal" src="../img/파카썸네일.jpg" alt="프로필사진">
+                        </div>
+                        <div class="Modal" id="ProfileTopInfo">
+                            <h1 class="Modal">MyeongMin Kim</h1>
+                            <h2 class="Modal">rmfpsfkrks132@gmail.com</h2>
+                            <a class="Modal" href="index.html">Google 계정 관리</a>
+                        </div>
+                    </div>
+                    <div class="ProfileSlotContainer Modal">
+                        <button class="ProfileSlot" onclick="Redirect('index.html');">
+                            <img class="ProfileSlotImg" src="../img/아이콘/내채널아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>내 채널</h1>
+                        </button>
+                        <button class="ProfileSlot" onclick="Redirect('index.html');">
+                            <img class="ProfileSlotImg" src="../img/아이콘/유료멤버십아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>유료 멤버십</h1>
+                        </button>
+                        <button class="ProfileSlot" onclick="Redirect('index.html');">
+                            <img class="ProfileSlotImg" src="../img/아이콘/유튜브스튜디오아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>YouTube 스튜디오</h1>
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg" src="../img/아이콘/계정전환아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>계정 전환</h1>
+                            <img class="RightArrow" src="../img/아이콘/오른쪽열기.png" alt="">
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg" src="../img/아이콘/로그아웃아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>로그아웃</h1>
+                        </button>
+                    </div>
+
+                    <div class="ProfileSlotContainer Modal">
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg" src="../img/아이콘/디자인아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>디자인: 기기 테마</h1>
+                            <img class="RightArrow" src="../img/아이콘/오른쪽열기.png" alt="">
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg" src="../img/아이콘/언어아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>언어: 한국어</h1>
+                            <img class="RightArrow" src="../img/아이콘/오른쪽열기.png" alt="">
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg" src="../img/아이콘/위치아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>위치: 한국</h1>
+                            <img class="RightArrow" src="../img/아이콘/오른쪽열기.png" alt="">
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg black" src="../img/아이콘/설정.png" alt="프로필 슬롯 버튼">
+                            <h1>설정</h1>
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg" src="../img/아이콘/내데이터아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>YouTube의 내 데이터</h1>
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg black" src="../img/아이콘/고객센터.png" alt="프로필 슬롯 버튼">
+                            <h1>고객센터</h1>
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg black" src="../img/아이콘/의견보내기.png" alt="프로필 슬롯 버튼">
+                            <h1>의견 보내기</h1>
+                        </button>
+                        <button class="ProfileSlot">
+                            <img class="ProfileSlotImg" src="../img/아이콘/키보드아이콘.png" alt="프로필 슬롯 버튼">
+                            <h1>단축키</h1>
+                        </button>
+                    </div>
+
+                    <div class="ProfileSlotContainer Modal">
+                        <button class="ProfileSlot">
+                            <h1 id="LastProfileSlot">제한 모드: 사용 안함</h1>
+                            <img class="RightArrow" src="../img/아이콘/오른쪽열기.png" alt="">
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="LeftBar">
+            <div class="LeftContainer">
+                <button class="LeftBox" style="background-color: rgb(230, 230, 230);" onclick="Redirect('index.html')">
+                    <img src="../img/아이콘/홈선택.png" alt="홈 버튼" style="opacity: 1;">
+                    <h1>홈</h1>
+                </button>
+                <script>
+                    var target = CreateLeftBox(0);
+                    SetLeftBox(target,"../img/아이콘/인기.png","인기",
+                    "alert('인기');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(0);
+                    SetLeftBox(target,"../img/아이콘/구독.png","구독",
+                    "alert('구독');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(0);
+                    SetLeftBox(target,"../img/아이콘/유튜브마크.png",
+                    "Originals","alert('오리지날');",1);
+                </script>
+            </div>
+
+            <div class="LeftContainer">
+                <script>
+                    var target = CreateLeftBox(1);
+                    SetLeftBox(target,"../img/아이콘/보관함.png","보관함",
+                    "alert('보관함');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(1);
+                    SetLeftBox(target,"../img/아이콘/히스토리.png","시청 기록",
+                    "alert('시청 기록');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(1);
+                    SetLeftBox(target,"../img/아이콘/내동영상.png","내 동영상",
+                    "alert('내 동영상');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(1);
+                    SetLeftBox(target,"../img/아이콘/구입한영상.png","구입한 동영상",
+                    "alert('구입한 동영상');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(1);
+                    SetLeftBox(target,"../img/아이콘/나중에볼.png","나중에 볼 동영상",
+                    "alert('나중에 볼 동영상');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(1);
+                    SetLeftBox(target,"../img/아이콘/아래열기.png","더보기",
+                    "ShowPlaylist();",1);
+                    target.setAttribute("Class","LeftBox ShowPlaylistBtn");
+                </script>
+                <div class="PlaylistHide">
+                    <script>
+                        var target = CreateLeftBox(1,1);
+                        SetLeftBox(target,"../img/아이콘/재생목록.png","작업곡",
+                        "alert('커스텀 재생목록-작업곡');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(1,1);
+                        SetLeftBox(target,"../img/아이콘/재생목록.png","노동요",
+                        "alert('커스텀 재생목록-노동요');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(1,1);
+                        SetLeftBox(target,"../img/아이콘/재생목록.png","힙합",
+                        "alert('커스텀 재생목록-힙합');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(1,1);
+                        SetLeftBox(target,"../img/아이콘/재생목록.png","자기 전",
+                        "alert('커스텀 재생목록-자기 전');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(1,1);
+                        SetLeftBox(target,"../img/아이콘/재생목록.png","드라이브",
+                        "alert('커스텀 재생목록-드라이브');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(1,1);
+                        SetLeftBox(target,"../img/아이콘/재생목록.png","발라드",
+                        "alert('커스텀 재생목록-발라드');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(1,1);
+                        SetLeftBox(target,"../img/아이콘/재생목록.png","시티팝",
+                        "alert('커스텀 재생목록-시티팝');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(1,1);
+                        SetLeftBox(target,"../img/아이콘/간략히보기.png","간략히 보기",
+                        "HidePlaylist();",1);
+                    </script>
+                </div>
+            </div>
+
+            <div class="LeftContainer">
+                <h2>구독</h2>
+                <button class="LeftBox SubBox" onclick="alert('감스트채널')">
+                    <div class="SubBoxThumWrap">
+                        <img src="../img/감스트썸네일.jpg" alt="구독 채널 버튼">
+                    </div>
+                    <h1>감스트GAMST</h1>
+                </button>
+                <script>
+                    var target = CreateSubBox(2);
+                    SetSubBox(target,"../img/꽈뚜룹썸네일.jpg","꽈뚜룹 Quaddurup",
+                    "alert('꽈뚜룹채널');",1);
+                </script>
+                <script>
+                    var target = CreateSubBox(2);
+                    SetSubBox(target,"../img/네고왕썸네일.jpg","달라스튜디오",
+                    "alert('네고왕채널');",1);
+                </script>
+                <script>
+                    var target = CreateSubBox(2);
+                    SetSubBox(target,"../img/도파썸네일.jpg","Official Dopa",
+                    "alert('도파채널');",1);
+                </script>
+                <script>
+                    var target = CreateSubBox(2);
+                    SetSubBox(target,"../img/랄로썸네일.jpg","랄로",
+                    "alert('랄로채널');",1);
+                </script>
+                <script>
+                    var target = CreateSubBox(2);
+                    SetSubBox(target,"../img/승빠썸네일.jpg","승우아빠",
+                    "alert('승빠채널');",1);
+                </script>
+                <script>
+                    var target = CreateSubBox(2);
+                    SetSubBox(target,"../img/우왁굳썸네일.jpg","우왁굳의 게임방송",
+                    "alert('우왁굳채널');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(2);
+                    SetLeftBox(target,"../img/아이콘/아래열기.png","더보기",
+                    "ShowSub();",1);
+                    target.setAttribute("Class","LeftBox ShowSubBtn");
+                </script>
+                <div class="SubHide">
+                    <script>
+                        var target = CreateSubBox(2,2);
+                        SetSubBox(target,"../img/LCK썸네일.jpg","LCK",
+                        "alert('LCK');",1);
+                    </script>
+                    <script>
+                        var target = CreateSubBox(2,2);
+                        SetSubBox(target,"../img/피갤썸네일.jpg","피지컬갤러리",
+                        "alert('피지컬갤러리');",1);
+                    </script>
+                    <script>
+                        var target = CreateSubBox(2,2);
+                        SetSubBox(target,"../img/튜나썸네일.jpg","튜나",
+                        "alert('튜나');",1);
+                    </script>
+                    <script>
+                        var target = CreateSubBox(2,2);
+                        SetSubBox(target,"../img/워크맨썸네일.jpg","워크맨-Workman",
+                        "alert('워크맨');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(2,2);
+                        SetLeftBox(target,"../img/아이콘/간략히보기.png","간략히 보기",
+                        "HideSub();",1);
+                    </script>
+                </div>
+            </div>
+
+            <div class="LeftContainer">
+                <h2>YOTUBE 더보기</h2>
+                <script>
+                    var target = CreateLeftBox(3);
+                    SetLeftBox(target,"../img/아이콘/영화.png","영화",
+                    "alert('영화');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(3);
+                    SetLeftBox(target,"../img/아이콘/게임.png","게임",
+                    "alert('게임');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(3);
+                    SetLeftBox(target,"../img/아이콘/실시간.png","실시간",
+                    "alert('실시간');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(3);
+                    SetLeftBox(target,"../img/아이콘/학습.png","학습",
+                    "alert('학습');",1);
+                </script>
+            </div>
+
+            <div class="LeftContainer">
+                <script>
+                    var target = CreateLeftBox(4);
+                    SetLeftBox(target,"../img/아이콘/설정.png","설정",
+                    "alert('설정');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(4);
+                    SetLeftBox(target,"../img/아이콘/신고기록.png","신고 기록",
+                    "alert('신고 기록');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(4);
+                    SetLeftBox(target,"../img/아이콘/고객센터.png","고객센터",
+                    "alert('고객센터');",1);
+                </script>
+                <script>
+                    var target = CreateLeftBox(4);
+                    SetLeftBox(target,"../img/아이콘/의견보내기.png","의견 보내기",
+                    "alert('의견 보내기');",1);
+                </script>
+            </div>
+            <div class="LeftContainer" class="Info" style="padding-bottom: 0;">
+                <div class="InfoWrap" style="padding-bottom: 0;padding-top: 4px;">
+                    <a href="index.html">정보</a>
+                    <a href="index.html">프레스</a>
+                    <a href="index.html">저작권</a>
+                    <a href="index.html">문의하기</a><br>
+                    <a href="index.html">크리에이터</a>
+                    <a href="index.html">광고</a>
+                    <a href="index.html">개발자</a>
+                </div>
+                <div class="InfoWrap">
+                    <a href="index.html">이용약관</a>
+                    <a href="index.html">개인정보 보호<a>
+                    <a href="index.html">정책 및 안전</a>
+                    <a href="index.html">YouTube 작동의 원리</a><br>
+                    <a href="index.html">새로운 기능 테스트하기</a>
+                </div>
+                <div class="InfoWrap">
+                    <p>© 2020 Google LLC<br>
+                        회사명: Google LLC<br>
+                        CEO: Sundar Pichai<br>
+                        주소: 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.<br>
+                        전화: 080-822-1450 (무료)</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="SmallLeftBar">
+            <button class="SmallLeftBtn" onclick="
+                Redirect('index.html');
+            ">
+                <img src="../img/아이콘/홈선택.png" alt="홈 버튼" style="opacity: 1;">
+                <h1 style="color: red;">홈</h1>
+            </button>
+            <button class="SmallLeftBtn" onclick="
+                Redirect('index.html');
+            ">
+                <img src="../img/아이콘/인기.png" alt="인기 버튼">
+                <h1>인기</h1>
+            </button>
+            <button class="SmallLeftBtn" onclick="
+                Redirect('index.html');
+            ">
+                <img src="../img/아이콘/구독.png" alt="구독 버튼">
+                <h1>구독</h1>
+            </button>
+            <button class="SmallLeftBtn" onclick="
+                Redirect('index.html');
+            ">
+                <img src="../img/아이콘/유튜브마크.png" alt="오리지널 버튼">
+                <h1>Originals</h1>
+            </button>
+            <button class="SmallLeftBtn" onclick="
+                Redirect('index.html');
+            ">
+                <img src="../img/아이콘/보관함.png" alt="보관함 버튼">
+                <h1>보관함</h1>
+            </button>
+        </div>
+
+        <div id="Content">
+            <div class="ContentBox">
+                <button class="ContentBoxBtn" onclick="alert('동영상 이동')">
+                    <div class="ContentBoxThum">
+                        <div class="ContentBoxImgWrap">
+                            <img class="ContentBoxImg" src="../img/감스트영상.webp" alt="영상 썸네일">
+                            <h1 class="ContentBoxTime">20:00</h1>
+                            <img class="ContentPrev"src="../img/감스트인트로.webp" alt="영상 미리보기">
+                        </div>
+                    </div>
+                    <div class="ContentBoxInfo">
+                        <div class="ContentChannelImgWrap">
+                            <img src="../img/감스트썸네일.jpg" alt="채널 썸네일">
+                        </div>
+                        <div class="TextInfo">
+                            <h1 class="ContentTitle">감스트 한국최초 피파21 손흥민 뜨는영상 초레전드!! 0.2% 뚫었다!! OMG PACKED SON FIFA21 Ultimate Team</h1>
+                            <h2 class="ContentChannel">감스트GAMST</h2>
+                            <h3 class="ContentLong">조회수 199만회 · 1주 전</h3>
+                        </div>
+                    </div>
+                </button>
+
+                <button class="AfterBtn" onclick="alert('나중에 보기')">
+                    <div style="top: 6px; width : 28px; height: 28px; overflow: hidden; position: relative;">
+                        <img style="filter: invert(1); width : 16px; height: 16px;" src="../img/아이콘/히스토리.png" alt="나중에 볼 영상 버튼">
+                    </div>
+                </button>
+
+                <button class="ListBtn" onclick="alert('재생목록에 추가')">
+                    <div style="top: 6px; width : 28px; height: 28px; overflow: hidden; position: relative;">
+                        <img style="filter: invert(1); width : 16px; height: 16px;" src="../img/아이콘/재생목록.png" alt="재생목록 추가 버튼">
+                    </div>
+                </button>
+
+                <button class="ShowMoreBtn" onclick="alert('더보기')">
+                    <div style="width : 24px; height: 24px; overflow: hidden; position: relative;">
+                        <img src="../img/아이콘/더보기.png" alt="더보기 버튼">
+                    </div>
+                </button>
+            </div>
+            <script>
+                CreateContent("../img/도파영상.webp","../img/도파인트로.webp","28:40",
+                "../img/도파썸네일.jpg","【천룡인서버에서 만난 의문의 한국인 킨드레드 장인과 듀오결성 】",
+                "Official Dopa","37만","5일 전");
+                CreateContent("../img/랄로영상.webp","../img/랄로인트로.webp","24:33",
+                "../img/랄로썸네일.jpg","사랑한다 곽철우!","랄로","29만","2개월 전");
+                CreateContent("../img/승빠영상.webp","../img/승빠인트로.webp","7:44",
+                "../img/승빠썸네일.jpg","사람 볶는 방법","승우아빠","43만","4개월 전");
+                CreateContent("../img/우왁굳영상.PNG","../img/우왁굳인트로.webp","15:19",
+                "../img/우왁굳썸네일.jpg","게임 설정만 4시간동안 하는 스트리머 - 유로트럭",
+                "우왁굳의 게임방송","171만","1년 전");
+                CreateContent("../img/워크맨영상.webp","../img/워크맨인트로.webp","12:06",
+                "../img/워크맨썸네일.jpg","[ENG] 🐝꿀잼주의🐝 진짜 벌떼에 SM 춤짱 신동도 얼어버린 🍯 빨려다 골로 가는 극한 직업! 양봉장 알바 리뷰 | 워크맨 ep.71",
+                "워크맨-Workman","161만","6일 전");
+                CreateContent("../img/재키와이영상.webp","../img/재키와이인트로.webp","15:46",
+                "../img/모르는애썸네일.jpg","재키와이가 대단한 이유 랩을 들어보면 알지!","힙뀽이","5.3만","2주 전");
+                CreateContent("../img/클동요영상.webp","../img/클동요영상.webp","1:05:07",
+                "../img/클동요썸네일.jpg","[클래식 노동요] 할보르센 - 파사칼리아(헨델) 1시간 반복^^ Handel - Halvorsen Passacaglia 1-hour repeat^^",
+                "클래식 노동요","1.6천","3주 전");
+                CreateContent("../img/튜나영상.webp","../img/튜나인트로.webp","27:48",
+                "../img/튜나썸네일.jpg","강스포] 아이들의 꿈을 값싸게 처분한 UCC 뮬란 리뷰 [튜나]","튜나","26만","5일 전");
+                CreateContent("../img/피갤영상.webp","../img/피갤인트로.webp","33:39",
+                "../img/피갤썸네일.jpg","본격적인 선발과정 시작, 퇴교자 속출 l 가짜사나이2 Ep3","피지컬갤러리","1037만","6일 전");
+                CreateContent("../img/꽈뚜룹영상.webp","../img/꽈뚜룹인트로.webp","12:21",
+                "../img/꽈뚜룹썸네일.jpg","팔뚝만한 토마호크 고기 먹방","꽈뚜룹 Quaddurup","172만","1개월 전");
+                CreateContent("../img/김장훈영상.jpg","../img/김장훈인트로.webp","7:12",
+                "../img/김장훈썸네일.jpg","김장훈 - 노래만불렀지 live","몽둥이","107만","1년 전");
+                CreateContent("../img/조커영상.webp","../img/조커인트로.webp","6:12",
+                "../img/조커썸네일.jpg","조커 5분 다시보기 JOKER","영일남","124만","11개월 전");
+                CreateContent("../img/곽윤기영상.webp","../img/곽윤기인트로.webp","17:48",
+                "../img/곽윤기썸네일.jpg","[1,2화 분량실종] 드디어 '가짜사나이 ep.3리뷰' 하는 5,6번 훈련생 (feat. 이런 정신 머리로 금메달 따겠어?)",
+                "꽉잡아윤기-Kwakyoongy","25만","20시간 전");
+                CreateContent("../img/지니어스영상.webp","../img/지니어스인트로.webp","7:13",
+                "../img/지니어스썸네일.jpg","[#더지니어스] 인디언 포커로 카드게임 탑 클라스 증명한 홍진호 | #다시보는더지니어스 | #Diggle",
+                "tvN D ENT","157만","1년 전");
+                CreateContent("../img/조항조영상.webp","../img/조항조인트로.webp","3:26",
+                "../img/조항조썸네일.jpg","에미넴 - 사랑찾아 인생찾아 Remix (Feat. 엠씨더항조) (Live)","정했다일기석","236만","1년 전");
+
+            </script>
+        </div>
+
+        <div id="LeftHide">
+            <div id="HideLeft">
+                <div class="LeftContainer" style="height: 56px;padding: 0 0 0 16px;">
+                    <div id="Left">
+                        <button id="Menu" onclick="
+                            TurnLeftMenu();
+                        ">
+                            <img src="../img/아이콘/메뉴.png" alt="메뉴 버튼">
+                        </button>
+                        <a href="index.html" id="LogoBtn">
+                            <img src="../img/아이콘/유튜브프리미엄.png" alt="메인 로고 버튼">
+                        </a>
+                        <h1>KR</h1>
+                    </div>
+                </div>
+
+                <div class="LeftContainer">
+                    <button class="LeftBox" style="background-color: rgb(230, 230, 230);" onclick="Redirect('index.html')">
+                        <img src="../img/아이콘/홈선택.png" alt="홈 버튼" style="opacity: 1;">
+                        <h1>홈</h1>
+                    </button>
+                    <script>
+                        var target = CreateLeftBox(7);
+                        SetLeftBox(target,"../img/아이콘/인기.png","인기",
+                        "alert('인기');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(7);
+                        SetLeftBox(target,"../img/아이콘/구독.png","구독",
+                        "alert('구독');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(7);
+                        SetLeftBox(target,"../img/아이콘/유튜브마크.png",
+                        "Originals","alert('오리지날');",1);
+                    </script>
+                </div>
+    
+                <div class="LeftContainer">
+                    <script>
+                        var target = CreateLeftBox(8);
+                        SetLeftBox(target,"../img/아이콘/보관함.png","보관함",
+                        "alert('보관함');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(8);
+                        SetLeftBox(target,"../img/아이콘/히스토리.png","시청 기록",
+                        "alert('시청 기록');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(8);
+                        SetLeftBox(target,"../img/아이콘/내동영상.png","내 동영상",
+                        "alert('내 동영상');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(8);
+                        SetLeftBox(target,"../img/아이콘/구입한영상.png","구입한 동영상",
+                        "alert('구입한 동영상');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(8);
+                        SetLeftBox(target,"../img/아이콘/나중에볼.png","나중에 볼 동영상",
+                        "alert('나중에 볼 동영상');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(8);
+                        SetLeftBox(target,"../img/아이콘/아래열기.png","더보기",
+                        "ShowPlaylist();",1);
+                        target.setAttribute("Class","LeftBox ShowPlaylistBtn");
+                    </script>
+                    <div class="PlaylistHide">
+                        <script>
+                            var target = CreateLeftBox(8,1,true);
+                            SetLeftBox(target,"../img/아이콘/재생목록.png","작업곡",
+                            "alert('커스텀 재생목록-작업곡');",1);
+                        </script>
+                        <script>
+                            var target = CreateLeftBox(8,1,true);
+                            SetLeftBox(target,"../img/아이콘/재생목록.png","노동요",
+                            "alert('커스텀 재생목록-노동요');",1);
+                        </script>
+                        <script>
+                            var target = CreateLeftBox(8,1,true);
+                            SetLeftBox(target,"../img/아이콘/재생목록.png","힙합",
+                            "alert('커스텀 재생목록-힙합');",1);
+                        </script>
+                        <script>
+                            var target = CreateLeftBox(8,1,true);
+                            SetLeftBox(target,"../img/아이콘/재생목록.png","자기 전",
+                            "alert('커스텀 재생목록-자기 전');",1);
+                        </script>
+                        <script>
+                            var target = CreateLeftBox(8,1,true);
+                            SetLeftBox(target,"../img/아이콘/재생목록.png","드라이브",
+                            "alert('커스텀 재생목록-드라이브');",1);
+                        </script>
+                        <script>
+                            var target = CreateLeftBox(8,1,true);
+                            SetLeftBox(target,"../img/아이콘/재생목록.png","발라드",
+                            "alert('커스텀 재생목록-발라드');",1);
+                        </script>
+                        <script>
+                            var target = CreateLeftBox(8,1,true);
+                            SetLeftBox(target,"../img/아이콘/재생목록.png","시티팝",
+                            "alert('커스텀 재생목록-시티팝');",1);
+                        </script>
+                        <script>
+                            var target = CreateLeftBox(8,1,true);
+                            SetLeftBox(target,"../img/아이콘/간략히보기.png","간략히 보기",
+                            "HidePlaylist();",1);
+                        </script>
+                    </div>
+                </div>
+    
+                <div class="LeftContainer">
+                    <h2>구독</h2>
+                    <button class="LeftBox SubBox" onclick="alert('감스트채널')">
+                        <div class="SubBoxThumWrap">
+                            <img src="../img/감스트썸네일.jpg" alt="구독 채널 버튼">
+                        </div>
+                        <h1>감스트GAMST</h1>
+                    </button>
+                    <script>
+                        var target = CreateSubBox(9);
+                        SetSubBox(target,"../img/꽈뚜룹썸네일.jpg","꽈뚜룹 Quaddurup",
+                        "alert('꽈뚜룹채널');",1);
+                    </script>
+                    <script>
+                        var target = CreateSubBox(9);
+                        SetSubBox(target,"../img/네고왕썸네일.jpg","달라스튜디오",
+                        "alert('네고왕채널');",1);
+                    </script>
+                    <script>
+                        var target = CreateSubBox(9);
+                        SetSubBox(target,"../img/도파썸네일.jpg","Official Dopa",
+                        "alert('도파채널');",1);
+                    </script>
+                    <script>
+                        var target = CreateSubBox(9);
+                        SetSubBox(target,"../img/랄로썸네일.jpg","랄로",
+                        "alert('랄로채널');",1);
+                    </script>
+                    <script>
+                        var target = CreateSubBox(9);
+                        SetSubBox(target,"../img/승빠썸네일.jpg","승우아빠",
+                        "alert('승빠채널');",1);
+                    </script>
+                    <script>
+                        var target = CreateSubBox(9);
+                        SetSubBox(target,"../img/우왁굳썸네일.jpg","우왁굳의 게임방송",
+                        "alert('우왁굳채널');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(9);
+                        SetLeftBox(target,"../img/아이콘/아래열기.png","더보기",
+                        "ShowSub();",1);
+                        target.setAttribute("Class","LeftBox ShowSubBtn");
+                    </script>
+                    <div class="SubHide">
+                        <script>
+                            var target = CreateSubBox(9,2,true);
+                            SetSubBox(target,"../img/LCK썸네일.jpg","LCK",
+                            "alert('LCK');",1);
+                        </script>
+                        <script>
+                            var target = CreateSubBox(9,2,true);
+                            SetSubBox(target,"../img/피갤썸네일.jpg","피지컬갤러리",
+                            "alert('피지컬갤러리');",1);
+                        </script>
+                        <script>
+                            var target = CreateSubBox(9,2,true);
+                            SetSubBox(target,"../img/튜나썸네일.jpg","튜나",
+                            "alert('튜나');",1);
+                        </script>
+                        <script>
+                            var target = CreateSubBox(9,2,true);
+                            SetSubBox(target,"../img/워크맨썸네일.jpg","워크맨-Workman",
+                            "alert('워크맨');",1);
+                        </script>
+                        <script>
+                            var target = CreateLeftBox(9,2,true);
+                            SetLeftBox(target,"../img/아이콘/간략히보기.png","간략히 보기",
+                            "HideSub();",1);
+                        </script>
+                    </div>
+                </div>
+    
+                <div class="LeftContainer">
+                    <h2>YOTUBE 더보기</h2>
+                    <script>
+                        var target = CreateLeftBox(10);
+                        SetLeftBox(target,"../img/아이콘/영화.png","영화",
+                        "alert('영화');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(10);
+                        SetLeftBox(target,"../img/아이콘/게임.png","게임",
+                        "alert('게임');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(10);
+                        SetLeftBox(target,"../img/아이콘/실시간.png","실시간",
+                        "alert('실시간');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(10);
+                        SetLeftBox(target,"../img/아이콘/학습.png","학습",
+                        "alert('학습');",1);
+                    </script>
+                </div>
+    
+                <div class="LeftContainer">
+                    <script>
+                        var target = CreateLeftBox(11);
+                        SetLeftBox(target,"../img/아이콘/설정.png","설정",
+                        "alert('설정');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(11);
+                        SetLeftBox(target,"../img/아이콘/신고기록.png","신고 기록",
+                        "alert('신고 기록');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(11);
+                        SetLeftBox(target,"../img/아이콘/고객센터.png","고객센터",
+                        "alert('고객센터');",1);
+                    </script>
+                    <script>
+                        var target = CreateLeftBox(11);
+                        SetLeftBox(target,"../img/아이콘/의견보내기.png","의견 보내기",
+                        "alert('의견 보내기');",1);
+                    </script>
+                </div>
+                <div class="LeftContainer" class="Info" style="padding-bottom: 0;">
+                    <div class="InfoWrap" style="padding-bottom: 0;padding-top: 4px;">
+                        <a href="index.html">정보</a>
+                        <a href="index.html">프레스</a>
+                        <a href="index.html">저작권</a>
+                        <a href="index.html">문의하기</a><br>
+                        <a href="index.html">크리에이터</a>
+                        <a href="index.html">광고</a>
+                        <a href="index.html">개발자</a>
+                    </div>
+                    <div class="InfoWrap">
+                        <a href="index.html">이용약관</a>
+                        <a href="index.html">개인정보 보호<a>
+                        <a href="index.html">정책 및 안전</a>
+                        <a href="index.html">YouTube 작동의 원리</a><br>
+                        <a href="index.html">새로운 기능 테스트하기</a>
+                    </div>
+                    <div class="InfoWrap">
+                        <p>© 2020 Google LLC<br>
+                            회사명: Google LLC<br>
+                            CEO: Sundar Pichai<br>
+                            주소: 1600 Amphitheatre Parkway, Mountain View, CA 94043, USA.<br>
+                            전화: 080-822-1450 (무료)</p>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Blind" onclick="TurnLeftinSmallWindow();"></div>
+        </div>
+    </body>
+    <script>ContentreSizing();ContentColumnCheck();</script>
+</html>
